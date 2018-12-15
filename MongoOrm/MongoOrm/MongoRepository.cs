@@ -40,15 +40,22 @@ namespace MongoOrm
             return Collection.Find(new BsonDocument()).ToList();
         }
 
+        public virtual IEnumerable<T> FindAllByProperty(Dictionary<string,string> keyValuePairs)
+        {
+            var filter = Builders<T>.Filter;
+            FilterDefinition<T> filterDef = filter.Empty;
+
+            foreach (KeyValuePair<string,string> kvp in keyValuePairs)
+            {
+                filterDef = filterDef & filter.Eq(kvp.Key, kvp.Value);
+            }
+
+            return Collection.Find(filterDef).ToList();
+        }
+
         public virtual T FindById(string id)
         {
             var filter = Builders<T>.Filter.Eq("_id", id);
-            return Collection.Find(filter).FirstOrDefault();
-        }
-
-        public virtual T FindByProperty(string propName, object propValue)
-        {
-            var filter = Builders<T>.Filter.Eq(propName, propValue);
             return Collection.Find(filter).FirstOrDefault();
         }
 
