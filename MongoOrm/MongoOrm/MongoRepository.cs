@@ -15,7 +15,7 @@ namespace MongoOrm
 
         public MongoRepository()
         {
-            Client = new MongoClient(Environment.GetEnvironmentVariable(ConfigurationManager.AppSettings["ConnectionEnvVar"]));
+            Client = new MongoClient(ConfigurationManager.AppSettings["ConnectionEnvVar"]);
             Database = Client.GetDatabase(ConfigurationManager.AppSettings["DatabaseName"]);
             Collection = Database.GetCollection<T>(typeof(T).Name);
         }
