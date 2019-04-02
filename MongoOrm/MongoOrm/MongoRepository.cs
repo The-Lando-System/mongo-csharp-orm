@@ -7,7 +7,7 @@ using System.Reflection;
 
 namespace MongoOrm
 {
-    public class MongoRepository<T> where T : MongoModel
+    public class MongoRepository<T> : IMongoRepository<T> where T : MongoModel
     {
         internal MongoClient Client;
         internal IMongoDatabase Database;

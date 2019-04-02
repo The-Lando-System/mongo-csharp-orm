@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMongoRepository.cs" />
     <Compile Include="MongoRepository.cs" />
     <Compile Include="MongoModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
